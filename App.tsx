@@ -9,6 +9,7 @@ import {
   StatusBar,
 } from "react-native";
 import { useState } from "react";
+import GroupHeader from "./src/components/GroupHeader";
 
 export default function App() {
   const [tarefas, setTarefas] = useState(["Tarefa1"]);
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <GroupHeader></GroupHeader>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
