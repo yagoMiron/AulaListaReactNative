@@ -7,53 +7,22 @@ import {
   TouchableOpacity,
   View,
   StatusBar,
+  Pressable,
 } from "react-native";
 import { useState } from "react";
-import GroupHeader from "./src/components/GroupHeader";
+import GroupHeader from "./src/components/groupHead";
+import GroupBody from "./src/components/groupBody";
 
 export default function App() {
-  const [tarefas, setTarefas] = useState(["Tarefa1"]);
-  const [inputValue, setInputValue] = useState("");
-  const addTarefa = () => {
-    inputValue.length && setTarefas([...tarefas, inputValue]);
-    setInputValue("");
-  };
-
   return (
     <View style={styles.container}>
-      <GroupHeader></GroupHeader>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Crie uma tarefa"
-          value={inputValue}
-          onChangeText={setInputValue}
-        ></TextInput>
-        <TouchableOpacity style={styles.button} onPress={addTarefa}>
-          <MaterialCommunityIcons name="plus" size={20} color="white" />
-        </TouchableOpacity>
-      </View>
+      <GroupHeader />
 
-      <View style={styles.listContainer}>
-        <FlashList
-          style={styles.list}
-          data={tarefas}
-          renderItem={({ item }) => (
-            <View
-              style={[
-                styles.item,
-                {
-                  backgroundColor: `rgb(${Math.random() * 255} ${
-                    Math.random() * 255
-                  } ${Math.random() * 255})`,
-                },
-              ]}
-            >
-              <Text style={{ color: "white" }}> {item} </Text>
-            </View>
-          )}
-        />
-      </View>
+      <GroupBody />
+
+      <Pressable style={styles.btn}>
+        <Text style={styles.btnText}>+ Adicionar Grupo</Text>
+      </Pressable>
     </View>
   );
 }
@@ -61,10 +30,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e0e7ec",
+    backgroundColor: "#f0f0f0",
     alignItems: "center",
     paddingTop: StatusBar.currentHeight || 20,
-    padding: 30,
   },
   textInput: {
     borderWidth: 1,
@@ -103,5 +71,19 @@ const styles = StyleSheet.create({
     })`,
     color: "white",
     marginVertical: 5,
+  },
+  btn: {
+    padding: 12,
+    borderRadius: 28,
+    backgroundColor: "#00d000",
+    color: "white",
+    width: "80%",
+    margin: 20,
+  },
+  btnText: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 20,
   },
 });
